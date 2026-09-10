@@ -45,6 +45,7 @@ const navItems = [
   { label: 'Studio', href: '#studio' },
   { label: 'Showcase', href: '#showcase' },
   { label: 'Workflows', href: '#workflows' },
+  { label: 'Platform', href: '#platform' },
   { label: 'Tools', href: '#tools' },
   { label: 'Stories', href: '#stories' },
 ];
@@ -134,8 +135,17 @@ function Hero() {
               <span className="mono-label text-[#686974]">MYZ-01</span>
             </div>
             <div className="hero-proof-art">
-              <img src="/motion-ribbon.jpg" alt="Abstract chrome ribbon and lime cube" />
-              <div className="hero-proof-grid" aria-hidden="true" />
+              <div className="hero-3d-stage" aria-hidden="true">
+                <div className="hero-3d-grid" />
+                <div className="hero-3d-glow" />
+                <div className="hero-3d-ring hero-3d-ring-outer" />
+                <div className="hero-3d-ring hero-3d-ring-inner" />
+                <div className="hero-3d-core">
+                  <img src="/creative-orbit.jpg" alt="" />
+                </div>
+                <div className="hero-3d-card hero-3d-card-top">AI STUDIO <span>01</span></div>
+                <div className="hero-3d-card hero-3d-card-bottom">REMIX / MOTION <span>LIVE</span></div>
+              </div>
               <span className="hero-float-tag tag-top">prompt</span>
               <span className="hero-float-tag tag-right">9:16</span>
               <span className="hero-float-tag tag-bottom">reference → remix</span>
@@ -313,6 +323,58 @@ function WorkflowSection() {
   );
 }
 
+function PlatformSection() {
+  const platformPoints = [
+    ['AI Studio', 'Turn a blank prompt or reference into a visual direction.'],
+    ['Creative tools', 'Animate, edit, resize, and polish without changing platforms.'],
+    ['Model choice', 'Move from quick iterations to cinematic output when it matters.'],
+    ['Publish-ready', 'Keep one idea moving across stories, feeds, ads, and launches.'],
+  ];
+
+  return (
+    <section id="platform" className="platform-section page-shell">
+      <Reveal>
+        <div className="section-heading platform-heading">
+          <div>
+            <div className="eyebrow mono-label"><span className="number">03</span> The MyZesty platform</div>
+            <h2>More than a<br /><span className="cyan">single prompt.</span></h2>
+          </div>
+          <p>One connected space for the image, the motion, the edit, and the next version.</p>
+        </div>
+      </Reveal>
+      <div className="platform-layout">
+        <Reveal className="platform-visual">
+          <div className="platform-visual-main">
+            <img src="/creative-orbit.jpg" alt="Chrome orbit visual with glass sphere and lime cube" />
+            <div className="platform-visual-overlay" />
+            <span className="mono-label platform-stamp">MYZESTY / CREATIVE OS</span>
+            <span className="platform-visual-title">Brief<br /><span>→ output</span></span>
+          </div>
+          <div className="platform-visual-side">
+            <img src="/campaign-sculpture.jpg" alt="Cobalt fabric and chrome product campaign" />
+            <div className="platform-side-meta">
+              <span className="mono-label">Campaign / 04</span>
+              <span className="mono-label lime">+ remix</span>
+            </div>
+          </div>
+        </Reveal>
+        <div className="platform-points">
+          {platformPoints.map(([title, description], index) => (
+            <Reveal key={title} delay={index + 1} className="platform-point">
+              <span className="platform-point-number mono-label">0{index + 1}</span>
+              <div>
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </div>
+              <ChevronRight size={17} />
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 const tools = ['AI Studio', 'Ads Creator', 'Product Promo', 'Story+', 'AI Animate', 'AI Character', 'Avatar Character', 'Remove Background', 'Video Effects', 'Slow Motion', 'Color Correction', 'Resize Photo', 'Photo Filters'];
 
 function ToolsSection() {
@@ -322,7 +384,7 @@ function ToolsSection() {
       <Reveal>
         <div className="section-heading">
           <div>
-            <div className="eyebrow mono-label"><span className="number">03</span> The creative toolkit</div>
+            <div className="eyebrow mono-label"><span className="number">04</span> The creative toolkit</div>
             <h2>Less wrestling.<br /><span className="cyan">More making.</span></h2>
           </div>
           <p>Professional control, compressed into the moment between an idea and a post.</p>
@@ -372,7 +434,7 @@ function TiersSection() {
         <Reveal>
           <div className="section-heading">
             <div>
-              <div className="eyebrow mono-label"><span className="number">04</span> Pick your finish</div>
+              <div className="eyebrow mono-label"><span className="number">05</span> Pick your finish</div>
               <h2 id="tier-title">Every idea<br />has a <span>setting.</span></h2>
             </div>
             <p>Move quickly or go all in. Choose the model tier for the work in front of you.</p>
@@ -398,7 +460,7 @@ function StoriesSection() {
       <Reveal>
         <div className="section-heading">
           <div>
-            <div className="eyebrow mono-label"><span className="number">05</span> Made with MyZesty</div>
+            <div className="eyebrow mono-label"><span className="number">06</span> Made with MyZesty</div>
             <h2>Good work<br /><span className="coral">travels.</span></h2>
           </div>
           <p>Built for the teams and one-person studios making tomorrow&apos;s visual language today.</p>
@@ -481,6 +543,7 @@ function Home() {
         <StudioSection />
         <CampaignSection />
         <WorkflowSection />
+        <PlatformSection />
         <ToolsSection />
         <TiersSection />
         <StoriesSection />

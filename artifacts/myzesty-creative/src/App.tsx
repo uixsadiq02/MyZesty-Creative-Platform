@@ -43,9 +43,11 @@ function Reveal({ children, className = '', delay = 0 }: RevealProps) {
 
 const navItems = [
   { label: 'Studio', href: '#studio' },
+  { label: 'Templates', href: '#templates' },
   { label: 'Showcase', href: '#showcase' },
   { label: 'Workflows', href: '#workflows' },
   { label: 'Platform', href: '#platform' },
+  { label: 'Models', href: '#models' },
   { label: 'Tools', href: '#tools' },
   { label: 'Stories', href: '#stories' },
 ];
@@ -247,6 +249,52 @@ function StudioSection() {
   );
 }
 
+function TemplatesSection() {
+  const templates = [
+    { className: 'template-feature', image: '/editorial-car.jpg', tag: 'Launch film', title: 'Night drive / 9:16', meta: 'Product launch · cinematic', color: 'lime' },
+    { className: 'template-tall', image: '/portrait-editorial.jpg', tag: 'Story+', title: 'Editorial character', meta: 'Portrait · consistent', color: 'cyan' },
+    { className: 'template-small template-small-top', image: '/product-still.jpg', tag: 'Product Promo', title: 'Object study', meta: 'Still life · detail', color: 'coral' },
+    { className: 'template-small template-small-bottom', image: '/motion-ribbon.jpg', tag: 'AI Animate', title: 'Make it move', meta: 'Motion · remix', color: 'lime' },
+  ];
+
+  return (
+    <section id="templates" className="templates-section page-shell">
+      <Reveal>
+        <div className="section-heading">
+          <div>
+            <div className="eyebrow mono-label"><span className="number">02</span> Start from something good</div>
+            <h2>Recreate the<br /><span className="coral">feeling.</span></h2>
+          </div>
+          <p>Browse a starting point, match the structure, then make the result unmistakably yours.</p>
+        </div>
+      </Reveal>
+      <div className="template-bento">
+        {templates.map((template, index) => (
+          <Reveal key={template.title} delay={index % 3 + 1} className={`template-card ${template.className}`}>
+            <a href="https://myzesty.com" target="_blank" rel="noreferrer" data-testid={`link-template-${index}`}>
+              <img src={template.image} alt={template.title} />
+              <div className="template-card-overlay" />
+              <span className={`template-card-tag mono-label ${template.color}`}>{template.tag}</span>
+              <div className="template-card-copy">
+                <strong>{template.title}</strong>
+                <span>{template.meta}</span>
+              </div>
+              <span className="template-remix">Recreate / remix <ArrowUpRight size={14} /></span>
+            </a>
+          </Reveal>
+        ))}
+        <Reveal delay={2} className="template-note">
+          <span className="mono-label">Template library / live</span>
+          <strong>Don&apos;t start<br />from zero.</strong>
+          <a href="https://myzesty.com" target="_blank" rel="noreferrer" className="text-action" data-testid="link-browse-templates">
+            Browse templates <ChevronRight size={14} />
+          </a>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 function CampaignSection() {
   return (
     <section id="campaign" className="page-shell">
@@ -279,7 +327,7 @@ function WorkflowSection() {
       <Reveal>
         <div className="section-heading workflow-heading">
           <div>
-            <div className="eyebrow mono-label"><span className="number">02</span> Made for the way content moves</div>
+            <div className="eyebrow mono-label"><span className="number">03</span> Made for the way content moves</div>
             <h2>One idea.<br /><span className="coral">Many lives.</span></h2>
           </div>
           <p>The strongest creative tools do more than generate. They help an idea survive every crop, cut, and channel.</p>
@@ -336,7 +384,7 @@ function PlatformSection() {
       <Reveal>
         <div className="section-heading platform-heading">
           <div>
-            <div className="eyebrow mono-label"><span className="number">03</span> The MyZesty platform</div>
+            <div className="eyebrow mono-label"><span className="number">04</span> The MyZesty platform</div>
             <h2>More than a<br /><span className="cyan">single prompt.</span></h2>
           </div>
           <p>One connected space for the image, the motion, the edit, and the next version.</p>
@@ -375,6 +423,109 @@ function PlatformSection() {
   );
 }
 
+function ModelsSection() {
+  const models = [
+    {
+      name: 'Zesty Image',
+      label: 'Still / detail',
+      description: 'For crisp product worlds, editorial frames, and ideas that need to hold up close.',
+      image: '/product-still.jpg',
+      accent: 'cyan',
+      badge: 'Best for product',
+    },
+    {
+      name: 'Zesty Motion',
+      label: 'Video / flow',
+      description: 'Turn a strong frame into a piece of motion with camera energy and a clear finish.',
+      image: '/motion-ribbon.jpg',
+      accent: 'coral',
+      badge: 'Best for launch',
+    },
+    {
+      name: 'Zesty Character',
+      label: 'People / story',
+      description: 'Keep a face, attitude, and visual language moving across a complete story.',
+      image: '/portrait-editorial.jpg',
+      accent: 'lime',
+      badge: 'Best for story',
+    },
+    {
+      name: 'Zesty Remix',
+      label: 'Reference / explore',
+      description: 'Bring a reference, find the signal, and push it somewhere that belongs to you.',
+      image: '/creative-orbit.jpg',
+      accent: 'cyan',
+      badge: 'Best for ideas',
+    },
+  ];
+  const [activeModel, setActiveModel] = useState(0);
+  const model = models[activeModel];
+
+  return (
+    <section id="models" className="models-section page-shell">
+      <Reveal>
+        <div className="section-heading models-heading">
+          <div>
+            <div className="eyebrow mono-label"><span className="number">05</span> Choose your creative engine</div>
+            <h2>Different work.<br /><span className="cyan">Different model.</span></h2>
+          </div>
+          <p>Use the model that fits the job, then move between image, motion, character, and remix without leaving the idea behind.</p>
+        </div>
+      </Reveal>
+      <div className="models-layout">
+        <div className="model-selector" role="tablist" aria-label="Choose a model">
+          {models.map((item, index) => (
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeModel === index}
+              className={`model-tab ${activeModel === index ? 'active' : ''}`}
+              onClick={() => setActiveModel(index)}
+              key={item.name}
+              data-testid={`button-model-${index}`}
+            >
+              <span className="model-tab-number mono-label">0{index + 1}</span>
+              <span>
+                <strong>{item.name}</strong>
+                <small>{item.label}</small>
+              </span>
+              <ChevronRight size={16} />
+            </button>
+          ))}
+        </div>
+        <Reveal className={`model-promo model-promo-${model.accent}`}>
+          <div className="model-promo-image">
+            <img src={model.image} alt={`${model.name} example`} />
+            <div className="model-promo-overlay" />
+            <span className="model-promo-badge mono-label">{model.badge}</span>
+            <span className="model-promo-index mono-label">MODEL / 0{activeModel + 1}</span>
+          </div>
+          <div className="model-promo-content">
+            <div>
+              <span className="mono-label">{model.label}</span>
+              <h3>{model.name}</h3>
+              <p>{model.description}</p>
+            </div>
+            <a href="https://myzesty.com" target="_blank" rel="noreferrer" className="pill-action" data-testid="link-use-model">
+              Use this model <ArrowUpRight size={14} />
+            </a>
+          </div>
+        </Reveal>
+      </div>
+      <Reveal delay={2} className="model-ad">
+        <div>
+          <span className="mono-label">One platform / many ways in</span>
+          <strong>Pick a model.<br /><span>Keep the idea.</span></strong>
+        </div>
+        <p>Start with a template, bring your own reference, or let the model take the first pass.</p>
+        <a href="https://myzesty.com" target="_blank" rel="noreferrer" className="text-action" data-testid="link-models-cta">
+          Try the model lineup <ChevronRight size={14} />
+        </a>
+      </Reveal>
+    </section>
+  );
+}
+
 const tools = ['AI Studio', 'Ads Creator', 'Product Promo', 'Story+', 'AI Animate', 'AI Character', 'Avatar Character', 'Remove Background', 'Video Effects', 'Slow Motion', 'Color Correction', 'Resize Photo', 'Photo Filters'];
 
 function ToolsSection() {
@@ -384,7 +535,7 @@ function ToolsSection() {
       <Reveal>
         <div className="section-heading">
           <div>
-            <div className="eyebrow mono-label"><span className="number">04</span> The creative toolkit</div>
+            <div className="eyebrow mono-label"><span className="number">06</span> The creative toolkit</div>
             <h2>Less wrestling.<br /><span className="cyan">More making.</span></h2>
           </div>
           <p>Professional control, compressed into the moment between an idea and a post.</p>
@@ -434,7 +585,7 @@ function TiersSection() {
         <Reveal>
           <div className="section-heading">
             <div>
-              <div className="eyebrow mono-label"><span className="number">05</span> Pick your finish</div>
+              <div className="eyebrow mono-label"><span className="number">07</span> Pick your finish</div>
               <h2 id="tier-title">Every idea<br />has a <span>setting.</span></h2>
             </div>
             <p>Move quickly or go all in. Choose the model tier for the work in front of you.</p>
@@ -460,7 +611,7 @@ function StoriesSection() {
       <Reveal>
         <div className="section-heading">
           <div>
-            <div className="eyebrow mono-label"><span className="number">06</span> Made with MyZesty</div>
+            <div className="eyebrow mono-label"><span className="number">08</span> Made with MyZesty</div>
             <h2>Good work<br /><span className="coral">travels.</span></h2>
           </div>
           <p>Built for the teams and one-person studios making tomorrow&apos;s visual language today.</p>
@@ -511,7 +662,9 @@ function Footer() {
           <a href="#top" className="logo-mark" data-testid="link-footer-logo"><span className="logo-dot" aria-hidden="true" />myzesty</a>
           <div className="footer-links">
             <a href="#studio" data-testid="link-footer-studio">Studio</a>
+            <a href="#templates" data-testid="link-footer-templates">Templates</a>
             <a href="#showcase" data-testid="link-footer-showcase">Showcase</a>
+            <a href="#models" data-testid="link-footer-models">Models</a>
             <a href="#tools" data-testid="link-footer-tools">Tools</a>
             <a href="#top" data-testid="link-footer-top">Back to top ↑</a>
           </div>
@@ -541,9 +694,11 @@ function Home() {
       <main>
         <Hero />
         <StudioSection />
+          <TemplatesSection />
         <CampaignSection />
         <WorkflowSection />
         <PlatformSection />
+          <ModelsSection />
         <ToolsSection />
         <TiersSection />
         <StoriesSection />

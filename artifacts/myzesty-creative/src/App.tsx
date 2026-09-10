@@ -44,6 +44,7 @@ function Reveal({ children, className = '', delay = 0 }: RevealProps) {
 const navItems = [
   { label: 'Studio', href: '#studio' },
   { label: 'Showcase', href: '#showcase' },
+  { label: 'Workflows', href: '#workflows' },
   { label: 'Tools', href: '#tools' },
   { label: 'Stories', href: '#stories' },
 ];
@@ -120,9 +121,32 @@ function Hero() {
             <br />
             <em>unmissable.</em>
           </h1>
+          <div className="hero-underbar">
+            <span className="mono-label">One idea → a complete visual system</span>
+            <span className="hero-underbar-line" aria-hidden="true" />
+            <span className="mono-label text-[#686974]">01 — 04</span>
+          </div>
         </Reveal>
         <Reveal delay={1} className="hero-right">
-          <p>Generate and edit videos that fuel your feed and build your brand.</p>
+          <div className="hero-proof">
+            <div className="hero-proof-top">
+              <span className="mono-label lime">Creative system / live</span>
+              <span className="mono-label text-[#686974]">MYZ-01</span>
+            </div>
+            <div className="hero-proof-art">
+              <img src="/motion-ribbon.jpg" alt="Abstract chrome ribbon and lime cube" />
+              <div className="hero-proof-grid" aria-hidden="true" />
+              <span className="hero-float-tag tag-top">prompt</span>
+              <span className="hero-float-tag tag-right">9:16</span>
+              <span className="hero-float-tag tag-bottom">reference → remix</span>
+              <span className="hero-play"><Play size={14} fill="currentColor" /></span>
+            </div>
+            <div className="hero-proof-bottom">
+              <strong>Make one thought<br />travel further.</strong>
+              <span>Image / video / edit</span>
+            </div>
+          </div>
+          <p className="hero-intro-copy">Generate and edit videos that fuel your feed and build your brand.</p>
           <div className="hero-actions">
             <a href="#studio" className="pill-action" data-testid="link-hero-start">
               Start creating <ArrowDownRight size={15} />
@@ -232,6 +256,63 @@ function CampaignSection() {
   );
 }
 
+function WorkflowSection() {
+  const formats = [
+    ['01', 'Start with a spark', 'Prompt, reference image, rough cut, or product shot.'],
+    ['02', 'Shape the direction', 'Build a world, swap the subject, tune the motion.'],
+    ['03', 'Send it everywhere', 'Adapt one idea for stories, feeds, ads, and launches.'],
+  ];
+  const formatLabels = ['9:16', '1:1', '16:9'];
+
+  return (
+    <section id="workflows" className="workflow-section page-shell">
+      <Reveal>
+        <div className="section-heading workflow-heading">
+          <div>
+            <div className="eyebrow mono-label"><span className="number">02</span> Made for the way content moves</div>
+            <h2>One idea.<br /><span className="coral">Many lives.</span></h2>
+          </div>
+          <p>The strongest creative tools do more than generate. They help an idea survive every crop, cut, and channel.</p>
+        </div>
+      </Reveal>
+      <div className="workflow-layout">
+        <Reveal className="workflow-format-card">
+          <div className="workflow-card-top">
+            <span className="mono-label">The format check</span>
+            <span className="mono-label text-[#686974]">Ready to publish</span>
+          </div>
+          <div className="format-stage">
+            <div className="format-frame format-frame-tall"><span>story</span></div>
+            <div className="format-frame format-frame-square"><span>feed</span></div>
+            <div className="format-frame format-frame-wide"><span>film</span></div>
+          </div>
+          <div className="format-labels">
+            {formatLabels.map((label) => <span key={label}>{label}</span>)}
+          </div>
+          <p>Keep the feeling. Change the frame.</p>
+        </Reveal>
+        <div className="workflow-steps">
+          {formats.map(([number, title, description], index) => (
+            <Reveal key={number} delay={index + 1} className="workflow-step">
+              <span className="workflow-number mono-label">{number}</span>
+              <div>
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </div>
+              <ChevronRight size={17} />
+            </Reveal>
+          ))}
+        </div>
+      </div>
+      <Reveal delay={2} className="audience-rail">
+        <div><span className="mono-label">For creators</span><strong>Make your next post feel like a first.</strong></div>
+        <div><span className="mono-label">For brands</span><strong>Turn a product shot into a campaign world.</strong></div>
+        <div><span className="mono-label">For teams</span><strong>Move from brief to more usable cuts.</strong></div>
+      </Reveal>
+    </section>
+  );
+}
+
 const tools = ['AI Studio', 'Ads Creator', 'Product Promo', 'Story+', 'AI Animate', 'AI Character', 'Avatar Character', 'Remove Background', 'Video Effects', 'Slow Motion', 'Color Correction', 'Resize Photo', 'Photo Filters'];
 
 function ToolsSection() {
@@ -241,7 +322,7 @@ function ToolsSection() {
       <Reveal>
         <div className="section-heading">
           <div>
-            <div className="eyebrow mono-label"><span className="number">02</span> The creative toolkit</div>
+            <div className="eyebrow mono-label"><span className="number">03</span> The creative toolkit</div>
             <h2>Less wrestling.<br /><span className="cyan">More making.</span></h2>
           </div>
           <p>Professional control, compressed into the moment between an idea and a post.</p>
@@ -291,7 +372,7 @@ function TiersSection() {
         <Reveal>
           <div className="section-heading">
             <div>
-              <div className="eyebrow mono-label"><span className="number">03</span> Pick your finish</div>
+              <div className="eyebrow mono-label"><span className="number">04</span> Pick your finish</div>
               <h2 id="tier-title">Every idea<br />has a <span>setting.</span></h2>
             </div>
             <p>Move quickly or go all in. Choose the model tier for the work in front of you.</p>
@@ -317,7 +398,7 @@ function StoriesSection() {
       <Reveal>
         <div className="section-heading">
           <div>
-            <div className="eyebrow mono-label"><span className="number">04</span> Made with MyZesty</div>
+            <div className="eyebrow mono-label"><span className="number">05</span> Made with MyZesty</div>
             <h2>Good work<br /><span className="coral">travels.</span></h2>
           </div>
           <p>Built for the teams and one-person studios making tomorrow&apos;s visual language today.</p>
@@ -399,6 +480,7 @@ function Home() {
         <Hero />
         <StudioSection />
         <CampaignSection />
+        <WorkflowSection />
         <ToolsSection />
         <TiersSection />
         <StoriesSection />
